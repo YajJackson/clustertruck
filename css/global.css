@@ -1,0 +1,26 @@
+* {
+    margin: 5px;
+    padding: 0;
+    /*border: 1px solid red;*/
+}
+
+.citySelectionRowOne, .citySelectionRowTwo, .cityReportRowOne, .cityReportRowTwo {
+    display: flex; /* toggles vertical alignment */
+    justify-content: center; /* centers elements */
+    padding-right: 12.5%;
+    padding-left: 12.5%;
+}
+
+.getReportButton {
+    height: 50px;
+    width: 175px;
+}
+.citySelection {
+    height: 150px;
+    width: 150px;
+}
+
+.daySelection {
+    height: 100px;
+    width: 100px;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Analytics</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Not sure if I want to use bootstrap for this   
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://bootswatch.com/superhero/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://bootswatch.com/superhero/bootstrap.css"/>
+        -->
+
+        <!-- custom style-->
+        <link rel="stylesheet" href="css/global.css" />
+
+        <!-- scripts -->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" 
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
+            crossorigin="anonymous"></script>
+        <script src="js/global.js"></script>
+
+    </head>
+    <body>
+        <div class="mainContainer">
+
+            <div class="citySelectionContainer">
+                <div class="citySelectionRowOne">
+                    <button class="citySelection" id="citySelectionIndy">Indy</button>
+                    <button class="citySelection" id="citySelectionBtown">Btown</button>
+                </div>
+                <div class="citySelectionRowTwo">
+                    <button class="getReportButton">Get Report</button>
+                </div>
+            </div>
+            
+            <div class="cityReportContainer">
+                <div class="cityReportRowOne">
+                    <div class="selectedDayReport">
+                        <div class="selectedDayDate">Day of the Week</div>
+                        <div class="selectedDayDemand">Average Demand Score</div>
+                    </div>
+                    <div class="selectedDayChart">Hourly Demand Forecast</div>
+                </div>
+                <div class="cityReportRowTwo">
+                    <button class="daySelection" ID="dayOne">Day One</button>
+                    <button class="daySelection" ID="dayTwo">Day Two</button>
+                    <button class="daySelection" ID="dayThree">Day Three</button>
+                    <button class="daySelection" ID="dayFour">Day Four</button>
+                    <button class="daySelection" ID="daySix">Day Six</button>
+                    <button class="daySelection" ID="daySeven">Day Seven</button>
+                    <button class="daySelection" ID="dayFive">Day Five</button>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
