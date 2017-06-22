@@ -1,13 +1,13 @@
-function lineChart(demandValues){
+function lineChart(demandValues, days){ 
     var ctx = document.getElementById("myChart").getContext('2d');
     ctx.canvas.width = 400;
     ctx.canvas.height = 250
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            labels: days,
             datasets: [{
-                label: 'Demand Prediction',
+                label: 'Weekly Demand Prediction',
                 data: demandValues,
                 backgroundColor: [
                     'rgba(0, 221, 92, 0.2)'
@@ -43,7 +43,7 @@ function lineChart(demandValues){
         }
     });
 }
-lineChart([12, 19, 3, 7, 24, 8, 1]);
+
 $(document).ready(function() {
     // Tried to use this to avoid Cross-origin resource sharing error
     // response.addHeader("Access-Control-Allow-Origin", "*");
@@ -78,7 +78,6 @@ $(document).ready(function() {
         "sleet": 4,
         "snow": 5
     };
-    var specialValue = null;
 
     // create last of month to be referenced when checking for end of month special
     var today = new Date();
@@ -124,30 +123,44 @@ $(document).ready(function() {
             $('.selectedDaySummary').html('Forecast Summary');
             $('.cityReportContainer').hide(500);
 
-            // A solid work around for the access error, found at https://stackoverflow.com/questions/28104251/xmlhttprequest-cannot-load-no-access-control-allow-origin-header-is-present
+            // solid work around for the access error, found at https://stackoverflow.com/questions/28104251/xmlhttprequest-cannot-load-no-access-control-allow-origin-header-is-present
             $.ajax({
                 type: 'POST',
                 url: "https://api.darksky.net/forecast/496761701d0d263e29a5dd53794ee3dc/"+selectedLatitude+","+selectedLongitude,
                 dataType: 'jsonp',
                 success: function (forecast) {
+
+                    // values to be sent to graph function
+                    var dailyDemandValues = [];
+                    var days =[];
+
+                    // iterate through the next seven days
                     for(i=0;i<forecast.daily.data.length-1;i++){
 
                         // converting unix timestamp to javascript time
                         var d = new Date(forecast.daily.data[i].time*1000).getDay();
                         var m = new Date(forecast.daily.data[i].time*1000).getDate();
 
-                        // checking if last day of month, if so then add 5 to demand value
+                        // checking if last day of month; if so, then add 5 to dayValue
                         if(m == lastOfMonth){
                             dayValue[weekDays[d]] += 5;
                         }
+                        
+                        // calculate daily demand values and push them to array for graphing
+                        // forecast.daily.data[d].icon returns a string formatted description of the day's weather conditions
+                        var demandValue = dayValue[weekDays[d]] + weatherValue[forecast.daily.data[d].icon];
 
-                        // updating html
+                        // append out graph data
+                        days.push(weekDays[d]); 
+                        dailyDemandValues.push(demandValue);
+
+                        // updating cityReportRow 2 html, (day one, day two, day three, ...) => (Wednesday, Thursday, Friday, ...)
                         $("[day-id-number="+i+"]").html(weekDays[d]);
                     }
-
-                    // expand information about selected day within forecast
+                    
+                    // expand daily information about weather conditions
                     $('.daySelection').on('click', function() {
-
+                        
                         // update color to indicate selection
                         $('.daySelection').css('background-color','#5D6D7E');
                         $(this).css('background-color', 'black');
@@ -156,8 +169,8 @@ $(document).ready(function() {
                         var dayElement = $(this).attr('day-id-number');
                         var weekDay = $('#'+dayId).html();
 
-                        // calculate demandValue prediction
-                        var demandValue = dayValue[weekDay] + weatherValue[forecast.daily.data[dayElement].icon] + specialValue;
+                        // calculate demandValue prediction, estimated for color-mapping purposes
+                        var demandValue = dayValue[weekDay] + weatherValue[forecast.daily.data[dayElement].icon];
                         
                         // calculate color to visually represent the demand for the day 
                         scaledColor = 'rgb(0,' + Math.round(map_range(demandValue, -1, 13, 0, 255)) + ',40)';
@@ -172,7 +185,10 @@ $(document).ready(function() {
                         $('.selectedDaySummary').html(forecast.daily.data[dayElement].summary);
                         $('.selectedDayDemand').html(demandValue);
                     })
+                    // graph daily demand values
+                    lineChart(dailyDemandValues, days);
                 }
+                
             });
 
             // in the case of switching city selections, this animates the change

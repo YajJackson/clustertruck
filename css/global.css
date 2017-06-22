@@ -42,8 +42,9 @@ button, .selectedDayReport {
 }
 .selectedDayReport {
     transition: background-color 0.5s;
+    text-align: center;
     cursor: default;
-    height: 160px;
+    height: 175px;
     width: 175px;
 }
 button:focus {outline:0;}
