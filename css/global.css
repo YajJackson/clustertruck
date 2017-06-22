@@ -14,6 +14,9 @@
     transition: border-radius 0.5s;
     border-radius: 5px;
 }
+.selectedDayDate, .selectedDaySummary {
+    transition: background-color 0.5s;
+}
 .citySelection {
     transition: background-color 0.5s;
     height: 175px;
@@ -40,10 +43,7 @@ button, .selectedDayReport {
 .selectedDayReport {
     transition: background-color 0.5s;
     cursor: default;
-    height: 105px;
+    height: 160px;
     width: 175px;
-}
-.selectedDayDate, .selectedDaySummary {
-    transition: background-color 0.5s;
 }
 button:focus {outline:0;}

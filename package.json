@@ -1,0 +1,22 @@
+{
+  "name": "clustertruck",
+  "version": "1.0.0",
+  "description": "Create platform to predict demand based on set variables",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YajJackson/clustertruck.git"
+  },
+  "author": "Jay Jackson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YajJackson/clustertruck/issues"
+  },
+  "homepage": "https://github.com/YajJackson/clustertruck#readme",
+  "devDependencies": {
+    "chart.js": "^2.6.0"
+  }
+}

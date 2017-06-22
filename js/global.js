@@ -1,3 +1,49 @@
+function lineChart(demandValues){
+    var ctx = document.getElementById("myChart").getContext('2d');
+    ctx.canvas.width = 400;
+    ctx.canvas.height = 250
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            datasets: [{
+                label: 'Demand Prediction',
+                data: demandValues,
+                backgroundColor: [
+                    'rgba(0, 221, 92, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(0, 221, 92, 1)'
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: false, //for some reason, fixes resizing issues
+            maintainAspectRatio: true,
+            legend: {
+                display: true,
+                labels: {
+                    fontColor: 'white'
+                }
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        fontColor: "white",
+                        fontSize: 12,
+                        beginAtZero:true
+                    }
+                }],
+                xAxes: [{
+                    display: false
+                }],
+                
+            }
+        }
+    });
+}
+lineChart([12, 19, 3, 7, 24, 8, 1]);
 $(document).ready(function() {
     // Tried to use this to avoid Cross-origin resource sharing error
     // response.addHeader("Access-Control-Allow-Origin", "*");

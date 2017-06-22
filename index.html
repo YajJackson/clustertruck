@@ -7,12 +7,7 @@
 
         <!-- style -->
         <link rel="stylesheet" href="css/global.css" />
-
-        <!-- scripts -->
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" 
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
-            crossorigin="anonymous"></script>
-        <script src="js/global.js"></script>
+        
     </head>
     <body>
         <div class="mainContainer">
@@ -32,6 +27,7 @@
                         <div class="selectedDayDate">Day of the Week</div>
                         <div class="selectedDaySummary">Forecast Summary</div>
                     </div>
+                        <canvas id="myChart" width="400" height="200"></canvas>
                 </div>
                 <div class="cityReportRowTwo">
                     <button class="daySelection" id="dayOne" day-id-number=0>Day One</button>
@@ -44,5 +40,12 @@
                 </div>
             </div>
         </div>
+        <!--footer scripts-->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" 
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+        <!--<script src="js/chart.js"></script>-->
+        <script src="js/global.js"></script>
     </body>
 </html>
