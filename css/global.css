@@ -1,26 +1,49 @@
 * {
     margin: 5px;
     padding: 0;
-    /*border: 1px solid red;*/
+    background-color: #5D6D7E;
+    transition: border-radius 0.5s;
 }
-
 .citySelectionRowOne, .citySelectionRowTwo, .cityReportRowOne, .cityReportRowTwo {
     display: flex; /* toggles vertical alignment */
     justify-content: center; /* centers elements */
     padding-right: 12.5%;
     padding-left: 12.5%;
 }
-
+.getReportButton:hover, .citySelection:hover, .daySelection:hover {
+    transition: border-radius 0.5s;
+    border-radius: 5px;
+}
+.citySelection {
+    transition: background-color 0.5s;
+    height: 175px;
+    width: 175px;
+}
 .getReportButton {
     height: 50px;
     width: 175px;
 }
-.citySelection {
-    height: 150px;
-    width: 150px;
+button, .selectedDayReport {
+    cursor:pointer;
+    left:0;
+    top:0%;
+    width:20%;
+    padding: 15px 10px;
+    border-radius: 20px;
+    margin:10px;
+    background:#5D6D7E;
+    border:4px solid white;
+    text-transform:uppercase;
+    letter-spacing: 4px;
+    color:white;
 }
-
-.daySelection {
-    height: 100px;
-    width: 100px;
+.selectedDayReport {
+    transition: background-color 0.5s;
+    cursor: default;
+    height: 105px;
+    width: 175px;
 }
+.selectedDayDate, .selectedDaySummary {
+    transition: background-color 0.5s;
+}
+button:focus {outline:0;}
