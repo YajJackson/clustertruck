@@ -19,8 +19,11 @@
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" 
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
             crossorigin="anonymous"></script>
-        <script src="js/global.js"></script>
+        <!--using google charts-->
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+        <script src="js/global.js"></script>
+        <!--<script type="text/javascript" src="js/chart.js"></script>-->
     </head>
     <body>
         <div class="mainContainer">
@@ -43,7 +46,7 @@
                         <div class="selectedDayDemand">Average Demand Score</div>
                     </div>
                     <div class="selectedDayChart">
-                        Hourly Demand Forecast
+                        <div id="chart_div"></div>
                     </div>
                 </div>
                 <div class="cityReportRowTwo">

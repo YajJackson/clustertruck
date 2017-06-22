@@ -1,40 +1,47 @@
-$(document).ready(function() {
-    // Tried to use this to avoid Cross-origin resource sharing error
-    // response.addHeader("Access-Control-Allow-Origin", "*");
+$(document).ready(function(){
+  google.charts.load('current', {packages: ['corechart', 'line']});
+  google.charts.setOnLoadCallback(drawBackgroundColor);
+  var selectedLatitude = null;
+  var selectedLongitude =  null;
+  var dayValue = {
+      "Monday": 1,
+      "Tuesday": 2,
+      "Wednesday": 3,
+      "Thursday": 4,
+      "Friday": 5,
+      "Saturday": 3,
+      "Sunday": 3
+  };
+  var weatherValue = {
+      "clear-day": -2,
+      "clear-night": -2,
+      "partly-cloudy-day": 0,
+      "partly-cloudy-night": 0,
+      "cloudy": 1,
+      "rain": 4,
+      "sleet": 4,
+      "snow": 5
+  };
+  var weekDays = {
+      0: "Sunday",
+      1: "Monday",
+      2: "Tuesday",
+      3: "Wednesday",
+      4: "Thursday",
+      5: "Friday",
+      6: "Saturday",
+  }
+  var specialValue = null;
+  var dailydemandValue = dayValue + weatherValue + specialValue;
+  
 
-    var selectedLatitude = null;
-    var selectedLongitude =  null;
-    var dayValue = {
-        "Monday": 1,
-        "Tuesday": 2,
-        "Wednesday": 3,
-        "Thursday": 4,
-        "Friday": 5,
-        "Saturday": 3,
-        "Sunday": 3
-    };
-    var weatherValue = {
-        "clear-day": -2,
-        "clear-night": -2,
-        "partly-cloudy-day": 0,
-        "partly-cloudy-night": 0,
-        "cloudy": 1,
-        "rain": 4,
-        "sleet": 4,
-        "snow": 5
-    };
-    var weekDays = {
-        0: "Sunday",
-        1: "Monday",
-        2: "Tuesday",
-        3: "Wednesday",
-        4: "Thursday",
-        5: "Friday",
-        6: "Saturday",
-    }
-    var specialValue = null;
-    var dailydemandValue = dayValue + weatherValue + specialValue;
-
+  function drawBackgroundColor() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('number', 'X');
+    data.addColumn('number', 'Dogs');
+    data.addRows([
+      [0, 0],   [1, 10],  [2, 23]
+    ]);
     $.get("https://api.staging.clustertruck.com/api/kitchens/").done(function(cluster) {
         console.log(cluster);
 
@@ -82,4 +89,18 @@ $(document).ready(function() {
             });
         });
     });  
+    
+    var options = {
+      hAxis: {
+        title: 'Time'
+      },
+      vAxis: {
+        title: 'Popularity'
+      },
+      backgroundColor: '#f1f8e9'
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
+
 });
