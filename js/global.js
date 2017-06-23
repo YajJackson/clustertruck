@@ -183,7 +183,7 @@ $(document).ready(function() {
                         // updating cityReportRowTwo
                         $('.selectedDayDate').html(weekDay);
                         $('.selectedDaySummary').html(forecast.daily.data[dayElement].summary);
-                        $('.selectedDayDemand').html(demandValue);
+                        // $('.selectedDayDemand').html(demandValue);
                     })
                     // graph daily demand values
                     lineChart(dailyDemandValues, days);
