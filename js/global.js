@@ -140,7 +140,7 @@ $(document).ready(function() {
                         // converting unix timestamp to javascript time
                         var d = new Date(forecast.daily.data[i].time*1000).getDay();
                         var m = new Date(forecast.daily.data[i].time*1000).getDate();
-
+                        console.log(d);
                         // checking if last day of month; if so, then add 5 to dayValue
                         if(m == lastOfMonth){
                             dayValue[weekDays[d]] += 5;
@@ -148,8 +148,8 @@ $(document).ready(function() {
                         
                         // calculate daily demand values and push them to array for graphing
                         // forecast.daily.data[d].icon returns a string formatted description of the day's weather conditions
-                        var demandValue = dayValue[weekDays[d]] + weatherValue[forecast.daily.data[d].icon];
-
+                        var demandValue = dayValue[weekDays[d]] + weatherValue[forecast.daily.data[i].icon];
+                    
                         // append out graph data
                         days.push(weekDays[d]); 
                         dailyDemandValues.push(demandValue);
